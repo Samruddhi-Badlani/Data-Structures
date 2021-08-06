@@ -67,6 +67,69 @@ public class LinkedList {
 		}
 	}
 	
+	// Deletes the last element present in linked list 
+	public void deleteLast() {
+		
+		if(headNode == null) {
+			System.out.println("The list is empty ");
+		}
+		else {
+			Node tempNode = headNode ; 
+			while(tempNode.next.next != null) {
+				tempNode = tempNode.next;
+			}
+			
+			tempNode.next = null;
+		}
+	}
+	
+	// Deletes the last element present in linked list 
+	public void deleteFirst() {
+			
+		if(headNode == null) {
+			System.out.println("The list is empty ");
+		}
+		else {
+			headNode = headNode.next ;
+		}
+	}
+	
+	// Deletes the given value 
+	public void deleteValue(int value) {
+		
+		if(headNode == null) {
+			System.out.println("The list is empty ");
+		}
+		else {
+			Node tempNode = headNode ;
+			
+			if(headNode.item == value) {
+				deleteFirst();
+			}
+			else {
+				while( tempNode.next != null && tempNode.next.item != value) {
+					tempNode = tempNode.next;
+					if(tempNode.next == null) {
+						break;
+					}
+				}
+				if(tempNode == null ) {
+					System.out.println("The given value : "+value+" is not present in list : deletion unsuccessfull");
+				}
+				
+				else if(tempNode.next == null && tempNode.item == value) {
+					deleteLast();
+				}
+				else {
+					tempNode.next = tempNode.next.next ; 
+				}
+			}
+		}
+	}
+		
+	
+		
+	// Print the list 
 	public void print() {
 		
 		Node tempNode = headNode;
@@ -91,8 +154,13 @@ public class LinkedList {
 		list.addAfter(45,1);
 		list.print();
 		
+		
 		list.add(30);
 		list.add(20);
+		list.print();
+		list.deleteValue(45);
+		list.deleteValue(20);
+		list.deleteValue(40);
 		
 		
 		list.print();
